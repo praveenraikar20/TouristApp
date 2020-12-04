@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".LoginActivity">
+
+
+    <EditText
+        android:id="@+id/UserName"
+        android:hint="Email"
+        android:textColor="@color/black"
+        android:layout_width="@dimen/edittextwidth"
+        android:layout_height="@dimen/edittextheight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/UserPassword"
+        android:hint="Password"
+        android:textColor="@color/black"
+        android:layout_width="@dimen/edittextwidth"
+        android:layout_height="@dimen/edittextheight"
+        app:layout_constraintStart_toStartOf="@id/UserName"
+        app:layout_constraintEnd_toEndOf="@id/UserName"
+        app:layout_constraintTop_toBottomOf="@id/UserName"
+        />
+
+    <Button
+        android:id="@+id/loginbutton"
+        android:layout_width="@dimen/edittextwidth"
+        android:layout_height="@dimen/edittextheight"
+        android:alpha="0.5"
+        android:backgroundTint="@color/teal_700"
+        android:color="#0E0D0C"
+        android:text="LogIn"
+        android:textColor="#131313"
+         app:layout_constraintStart_toStartOf="@id/UserPassword"
+        app:layout_constraintEnd_toEndOf="@id/UserPassword"
+        app:layout_constraintTop_toBottomOf="@id/UserPassword"
+        android:layout_marginTop="@dimen/btntopmargin"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="@dimen/edittextwidth"
+        android:layout_height="@dimen/edittextheight"
+        android:layout_marginTop="20dp"
+        android:text="Not a member? Register Now..."
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="@id/loginbutton"
+        app:layout_constraintStart_toStartOf="@id/loginbutton"
+        app:layout_constraintTop_toBottomOf="@id/loginbutton" />
+
+    <TextView
+        android:id="@+id/clickTv"
+        android:layout_width="94dp"
+        android:layout_height="40dp"
+        android:text=" click here"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/loginbutton"
+        app:layout_constraintEnd_toEndOf="@id/loginbutton"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="284dp"
+        tools:layout_editor_absoluteY="436dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TouristGuide</string>
+    <string name="EnterName"></string>
+    <string name="EnterPassword"></string>
+    <string name="UserName"></string>
+    <string name="UserPassword"></string>
+    <string name="LogIn"></string>
+    <string name="RegisterNow"></string>
+</resources>
