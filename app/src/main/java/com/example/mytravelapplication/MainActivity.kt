@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         search_btn.setOnClickListener { startActivity(Intent(this, MapsActivity::class.java)) }
-        current_location_btn.setOnClickListener { startActivity(Intent(this, CurrentLocationActivity::class.java)) }
+        current_location_btn.setOnClickListener {
+            startActivity(Intent(this, SearchActivity::class.java)) }
     }
 }
