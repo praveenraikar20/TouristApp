@@ -1,5 +1,6 @@
 package com.example.mytravelapplication.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -30,7 +31,10 @@ class SearchActivity : AppCompatActivity() {
                         Log.i(TAG, "onCreate: some error occurred")
                     } else {
                         Log.i(TAG, "onCreate: Lat = ${it.latitude} and Long = ${it.longitude}")
-
+                        val mapsIntent = Intent(this, MapsActivity::class.java)
+                        mapsIntent.putExtra("lat", it.latitude)
+                        mapsIntent.putExtra("long", it.longitude)
+                        startActivity(mapsIntent)
                     }
                 })
             }

@@ -35,27 +35,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        directionList.add(LatLng(52.50930, 13.42937))
-        directionList.add(LatLng(52.50904, 13.42913))
-        directionList.add(LatLng(52.50895, 13.42904))
-        directionList.add(LatLng(52.50868, 13.42880))
+        val intent = intent
+        val lat = intent.getDoubleExtra("lat", 0.0)
+        val long = intent.getDoubleExtra("long", 0.0)
+        val placeName = intent.getStringExtra("place name")
 
-//        val intent = intent
-//        val lat = intent.getDoubleExtra("lat", 0.0)
-//        val long = intent.getDoubleExtra("long", 0.0)
-//        val placeName = intent.getStringExtra("place name")
-//        Log.i(TAG, "onMapReady: lat = $lat and long = $long")
-//
-//        val place = LatLng(lat, long)
-//        map.addMarker(MarkerOptions().position(place).title(placeName))
-//        map.moveCamera(CameraUpdateFactory.newLatLngZoom(place, 10f))
+        Log.i(TAG, "onMapReady: lat = $lat and long = $long")
 
-        val line : Polyline = map.addPolyline(PolylineOptions()
-                .addAll(directionList)
-                .width(50f)
-                .color(Color.RED))
+        val place = LatLng(lat, long)
+        map.addMarker(MarkerOptions().position(place).title(placeName))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(place, 10f))
 
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(52.50930, 13.42937), 15f))
+
 
     }
 }
