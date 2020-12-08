@@ -1,6 +1,6 @@
-package com.example.mytravelapplication
+package com.example.mytravelapplication.model.data
 
-data class ResponseData(
+data class SearchPlaceResponseData(
         val results: List<Result>,
         val summary: Summary
 )
@@ -15,6 +15,7 @@ data class Result(
         val type: String,
         val viewport: Viewport
 )
+
 data class Summary(
         val fuzzyLevel: Int,
         val numResults: Int,

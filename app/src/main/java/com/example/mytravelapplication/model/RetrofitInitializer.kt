@@ -1,4 +1,4 @@
-package com.example.mytravelapplication
+package com.example.mytravelapplication.model
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

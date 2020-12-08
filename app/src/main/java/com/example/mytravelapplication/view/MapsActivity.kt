@@ -1,9 +1,10 @@
-package com.example.mytravelapplication
+package com.example.mytravelapplication.view
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.mytravelapplication.R
 import com.google.android.gms.maps.CameraUpdateFactory
 
 import com.google.android.gms.maps.GoogleMap
