@@ -12,19 +12,20 @@ import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
-
     lateinit var userName:EditText
-    lateinit var click:TextView
+    lateinit var registerNow:TextView
+    lateinit var forgotPassword:TextView
     lateinit var password: EditText
     lateinit var loginButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        userName = findViewById(R.id.UserName)
+        userName = findViewById(R.id.email_et)
         password = findViewById(R.id.UserPassword)
         loginButton = findViewById(R.id.loginbutton)
-        click = findViewById(R.id.clickTv)
+        forgotPassword = findViewById(R.id.forgotpassword_tv)
+        registerNow = findViewById(R.id.register_tv)
 
         auth = FirebaseAuth.getInstance()
         val currentuser = auth.currentUser
@@ -59,9 +60,12 @@ class LoginActivity : AppCompatActivity() {
                 }
 
         }
-       click.setOnClickListener(){
+       registerNow.setOnClickListener(){
            startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
        }
+        forgotPassword.setOnClickListener(){
+            
+        }
 
     }
 
