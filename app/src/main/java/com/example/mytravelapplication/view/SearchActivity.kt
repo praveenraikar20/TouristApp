@@ -1,19 +1,20 @@
 package com.example.mytravelapplication.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.example.mytravelapplication.R
-import com.example.mytravelapplication.model.RetrofitInitializer
-import com.example.mytravelapplication.model.RetrofitInterface
 import com.example.mytravelapplication.viewmodel.PlaceViewModel
 import kotlinx.android.synthetic.main.activity_search.*
 
+private val TAG = SearchActivity::class.java.simpleName
+private const val EXTRA_LATITUDE = "EXTRA_LATITUDE"
+private const val EXTRA_LONGITUDE = "EXTRA_LONGITUDE"
+private const val EXTRA_PLACE_NAME = "EXTRA_PLACE_NAME"
 
-private const val TAG = "SearchActivity"
 class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,19 +22,19 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
         val placeViewModel = ViewModelProviders.of(this).get(PlaceViewModel::class.java)
 
-        search_btn.setOnClickListener {
-            if (search_et.text.isEmpty()){
+        btn_search.setOnClickListener {
+            if (et_search.text.isEmpty()) {
                 Toast.makeText(this, "Search field empty !", Toast.LENGTH_SHORT).show()
-            }else{
-                val placeName = search_et.text.toString()
+            } else {
+                val placeName = et_search.text.toString()
                 placeViewModel.getPlaceCoordinates(placeName).observe(this, {
                     if (it == null) {
                         Log.i(TAG, "onCreate: some error occurred")
                     } else {
-                        Log.i(TAG, "onCreate: Lat = ${it.latitude} and Long = ${it.longitude}")
                         val mapsIntent = Intent(this, MapsActivity::class.java)
-                        mapsIntent.putExtra("lat", it.latitude)
-                        mapsIntent.putExtra("long", it.longitude)
+                        mapsIntent.putExtra(EXTRA_LATITUDE, it.latitude)
+                        mapsIntent.putExtra(EXTRA_LONGITUDE, it.longitude)
+                        mapsIntent.putExtra(EXTRA_PLACE_NAME, placeName)
                         startActivity(mapsIntent)
                     }
                 })

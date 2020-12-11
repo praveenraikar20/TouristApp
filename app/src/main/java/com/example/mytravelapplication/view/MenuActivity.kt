@@ -10,6 +10,6 @@ class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        search_btn.setOnClickListener { startActivity(Intent(this, SearchActivity::class.java)) }
+        btn_search.setOnClickListener { startActivity(Intent(this, SearchActivity::class.java)) }
     }
 }

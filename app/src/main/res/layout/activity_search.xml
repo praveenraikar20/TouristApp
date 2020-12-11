@@ -7,34 +7,26 @@
     tools:context=".view.SearchActivity">
 
     <EditText
-        android:id="@+id/search_et"
+        android:id="@+id/et_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter the place name"
-        android:layout_margin="10dp"
+        android:hint="@string/search_place_hint"
+        android:layout_margin="@dimen/et_search_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text" />
 
     <Button
-        android:id="@+id/search_btn"
+        android:id="@+id/btn_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="SEARCH"
+        android:layout_margin="@dimen/btn_search_margin"
+        android:text="@string/all_search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_et"
+        app:layout_constraintTop_toBottomOf="@+id/et_search"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/coordinates_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

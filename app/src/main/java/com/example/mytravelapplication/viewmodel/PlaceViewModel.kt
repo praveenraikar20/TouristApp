@@ -8,7 +8,7 @@ import com.google.android.gms.maps.model.LatLng
 class PlaceViewModel : ViewModel(){
     private val placeRepository = PlaceRepository()
     fun getPlaceCoordinates(placeName : String) : LiveData<LatLng> {
-        placeRepository.findPlaceCoordinates(placeName)
-        return placeRepository.getCoordinates()
+        placeRepository.getPlaceCoordinates(placeName)
+        return placeRepository.getPlaceCoordinates(placeName)
     }
 }

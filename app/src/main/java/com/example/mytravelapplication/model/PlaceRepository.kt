@@ -10,30 +10,27 @@ import retrofit2.Callback
 import retrofit2.Response
 
 private const val TAG = "SearchPlaceRepository"
-class PlaceRepository {
 
+class PlaceRepository {
     private val retrofit = RetrofitInitializer.getInstance().create(RetrofitInterface::class.java)
     private val coordinates = MutableLiveData<LatLng>()
-    private val errorData = MutableLiveData<Throwable>()
-
-    fun findPlaceCoordinates(placeName : String){
+    fun getPlaceCoordinates(placeName: String): LiveData<LatLng> {
         val placeData = retrofit.getPlaceData(placeName)
         placeData.enqueue(object : Callback<SearchPlaceResponseData> {
             override fun onResponse(
-                call: Call<SearchPlaceResponseData>,
-                response: Response<SearchPlaceResponseData>
+                    call: Call<SearchPlaceResponseData>,
+                    response: Response<SearchPlaceResponseData>
             ) {
-                for (i in response.body()!!.results) {
-                    Log.i(TAG, "onResponse: lat = ${i.position.lat} and long = ${i.position.lon}")
-                    coordinates.value = LatLng(i.position.lat, i.position.lon)
+                for (result in response.body()?.results!!) {
+                    Log.i(TAG, "onResponse: lat = ${result.position.lat} and long = ${result.position.lon}")
+                    coordinates.value = LatLng(result.position.lat, result.position.lon)
                 }
             }
 
             override fun onFailure(call: Call<SearchPlaceResponseData>, throwable: Throwable) {
-                errorData.value = throwable
+                Log.d(TAG, "onFailure: ${throwable.message}")
             }
         })
+        return coordinates
     }
-
-    fun getCoordinates() : LiveData<LatLng> =   coordinates
 }
