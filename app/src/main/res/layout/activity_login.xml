@@ -46,22 +46,19 @@
         />
 
 
-    <TextView
-        android:id="@+id/forgotpassword_tv"
+    <Button
+        android:id="@+id/forgotpassword_btn"
         android:layout_width="@dimen/edittextwidth"
         android:layout_height="@dimen/edittextheight"
-        android:gravity="center"
-        android:text="Forgot Password?"
-        android:textAlignment="center"
+        android:text="Forgot Password"
         android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/register_tv"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:alpha="0.5"
+        android:backgroundTint="@color/teal_700"
+        android:color="#0E0D0C"
         app:layout_constraintStart_toStartOf="@id/register_tv"
+        app:layout_constraintEnd_toEndOf="@id/register_tv"
         app:layout_constraintTop_toBottomOf="@id/register_tv"
-        app:layout_constraintVertical_bias="0.0" />
-
+        />
     <TextView
         android:id="@+id/register_tv"
         android:layout_width="@dimen/edittextwidth"

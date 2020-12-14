@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="loginbutton" type="id">loginbtn</item>
-    <item name="forgotpassword_tv" type="id">forgotpassword</item>
-    <item name="register_tv" type="id">registeration</item>
-</resources>

@@ -6,4 +6,5 @@
     <dimen name="verticalbias">0.25</dimen>
     <dimen name="btntopmargin">20dp</dimen>
     <dimen name="btnradius">15dp</dimen>
+    <dimen name="roundcornerradius">30dp</dimen>
 </resources>

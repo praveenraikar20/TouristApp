@@ -23,7 +23,6 @@ class RegisterActivity : AppCompatActivity() {
     //real time data base reference
     var databaseReference : DatabaseReference? = null
     var database: FirebaseDatabase? = null
-
     lateinit var registerButton:Button
     lateinit var firstName:EditText
     lateinit var lastName:EditText
@@ -38,7 +37,6 @@ class RegisterActivity : AppCompatActivity() {
         lastName = findViewById(R.id.LastName)
         userName = findViewById(R.id.email_et)
         password = findViewById(R.id.UserPassword)
-
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
         databaseReference = database?.reference!!.child("HomeScreen")
@@ -68,8 +66,6 @@ class RegisterActivity : AppCompatActivity() {
             checkEmailExistsOrNot()
         }
     }
-
-
     private fun register(){
         auth.createUserWithEmailAndPassword(userName.text.toString(), password.text.toString())
                     .addOnCompleteListener {
@@ -78,9 +74,12 @@ class RegisterActivity : AppCompatActivity() {
                             //when registration is successful, saving the first name and last name (in profile)
                             val currentuserDb = databaseReference?.child(currentUser?.uid!!)
                            currentuserDb?.child("firstname")?.setValue(firstName.text.toString())
-                            //similar for last name
                             currentuserDb?.child("lastname")?.setValue(lastName.text.toString())
-                            Toast.makeText(this, "Registration success.", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                this,
+                                "Registration success.",
+                                Toast.LENGTH_LONG)
+                                .show()
                             finish()
                         }
                         else{
@@ -94,7 +93,6 @@ class RegisterActivity : AppCompatActivity() {
 
                     }
         }
-
     fun checkEmailExistsOrNot() {
         auth.fetchSignInMethodsForEmail(email_et.getText().toString()).addOnCompleteListener(
             OnCompleteListener<SignInMethodQueryResult> { task ->
