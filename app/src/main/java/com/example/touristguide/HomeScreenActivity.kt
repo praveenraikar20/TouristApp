@@ -9,22 +9,16 @@ import kotlinx.android.synthetic.main.activity_homescreen.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class HomeScreenActivity : AppCompatActivity() {
-
     lateinit var auth: FirebaseAuth
     var databaseReference : DatabaseReference? = null
     var database : FirebaseDatabase?= null
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homescreen)
-
-
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
         databaseReference = database?.reference!!.child("HomeScreen")
         loadprofile()
-
     }
     private fun loadprofile()
     {
@@ -39,11 +33,9 @@ class HomeScreenActivity : AppCompatActivity() {
                var LastName = snapshot.child("lastname").value.toString()
                 firstname.text = fstname +" "+ LastName
            }
-
             override fun onCancelled(error: DatabaseError) {
               //  TODO("Not yet implemented")
             }
-
         })
     }
 }

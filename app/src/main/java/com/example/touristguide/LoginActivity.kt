@@ -19,25 +19,23 @@ import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.dialog_forgot_password.*
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var auth: FirebaseAuth
+    lateinit var firebaseAuth: FirebaseAuth
     lateinit var userName:EditText
     lateinit var registerNow:TextView
-    lateinit var forgotPassword:Button
+    lateinit var forgotPassword:TextView
     lateinit var password: EditText
     lateinit var loginButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         userName = findViewById(R.id.email_et)
-        password = findViewById(R.id.UserPassword)
-        loginButton = findViewById(R.id.loginbutton)
-        forgotPassword = findViewById(R.id.forgotpassword_btn)
+        password = findViewById(R.id.password_et)
+        loginButton = findViewById(R.id.login_btn)
+        forgotPassword = findViewById(R.id.forgotpassword_tv)
         registerNow = findViewById(R.id.register_tv)
-
-        auth = FirebaseAuth.getInstance()
-        val currentuser = auth.currentUser
+        firebaseAuth = FirebaseAuth.getInstance()
+        val currentuser = firebaseAuth.currentUser
         if (currentuser != null) {
             //If user is already loged in then send him directly to a particular activity
             startActivity(Intent(this@LoginActivity, HomeScreenActivity::class.java))
@@ -59,14 +57,11 @@ class LoginActivity : AppCompatActivity() {
                }
             login()
         }
-
         registerNow.setOnClickListener(){
             startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
         }
 
         forgotPassword.setOnClickListener(){
-
-
            val builder:AlertDialog.Builder= AlertDialog.Builder(this)
             builder.setTitle("Reset Password?")
             builder.setTitle("Enter your Email to receive reset password link")
@@ -80,12 +75,10 @@ class LoginActivity : AppCompatActivity() {
             })
             val alertDialog = builder.create()
             alertDialog.show()
-
         }
     }
-
     private fun login() {
-        auth.signInWithEmailAndPassword(userName.text.toString(), password.text.toString())
+        firebaseAuth.signInWithEmailAndPassword(userName.text.toString(), password.text.toString())
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         //which activity u want to show
@@ -101,14 +94,13 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
-
         }
 
     private fun forgotPassword(dialogUserName:String){
         if(dialogUserName.isNotEmpty())
         {
             if (Patterns.EMAIL_ADDRESS.matcher(dialogUserName).matches()) {
-                auth.sendPasswordResetEmail(dialogUserName)
+                firebaseAuth.sendPasswordResetEmail(dialogUserName)
                     .addOnCompleteListener { task->
                         if(task.isSuccessful){
                             Toast.makeText(
@@ -128,11 +120,7 @@ class LoginActivity : AppCompatActivity() {
                 ).show()
             }
         }
-
-
     }
-
-
 }
 
 

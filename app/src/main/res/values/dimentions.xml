@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="textsize">20sp</dimen>
-    <dimen name="edittextheight">70dp</dimen>
-    <dimen name="edittextwidth">300dp</dimen>
+    <dimen name="height">60dp</dimen>
+    <dimen name="width">300dp</dimen>
     <dimen name="verticalbias">0.25</dimen>
     <dimen name="btntopmargin">20dp</dimen>
     <dimen name="btnradius">15dp</dimen>
