@@ -72,7 +72,7 @@
             app:startIconDrawable="@drawable/ic_baseline_mail_24">
 
             <EditText
-                android:id="@+id/email_et"
+                android:id="@+id/login_email_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alpha="0.1"
@@ -90,7 +90,7 @@
             app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
             <EditText
-                android:id="@+id/password_et"
+                android:id="@+id/login_password_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alpha="0.1"

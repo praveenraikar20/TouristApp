@@ -12,9 +12,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.activity_register.email_et
-import kotlinx.android.synthetic.main.activity_register.password_et
 import kotlinx.android.synthetic.main.dialog_forgot_password.*
 
 class LoginActivity : AppCompatActivity() {
@@ -30,17 +27,17 @@ class LoginActivity : AppCompatActivity() {
         }
         login_btn.setOnClickListener() {
             when {
-                TextUtils.isEmpty(email_et.text.toString()) -> {
-                    email_et.setError("please enter user name")
+                TextUtils.isEmpty(login_email_et.text.toString()) -> {
+                    login_email_et.setError("please enter user name")
                     return@setOnClickListener
                 }
-                !Patterns.EMAIL_ADDRESS.matcher(email_et.text.toString()).matches() -> {
-                    email_et.error = "Please enter a valid email id"
-                    email_et.requestFocus()
+                !Patterns.EMAIL_ADDRESS.matcher(login_email_et.text.toString()).matches() -> {
+                    login_email_et.error = "Please enter a valid email id"
+                    login_email_et.requestFocus()
                     return@setOnClickListener
                 }
-                TextUtils.isEmpty(password_et.text.toString()) -> {
-                    password_et.setError("please enter password_et")
+                TextUtils.isEmpty(login_password_et.text.toString()) -> {
+                    login_password_et.setError("please enter password_et")
                     return@setOnClickListener
                 }
                 else -> login()
@@ -66,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     private fun login() {
-        firebaseAuth.signInWithEmailAndPassword(email_et.text.toString(), password_et.text.toString())
+        firebaseAuth.signInWithEmailAndPassword(login_email_et.text.toString(), login_password_et.text.toString())
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     startActivity(Intent(this@LoginActivity, HomeScreenActivity::class.java))

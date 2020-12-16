@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
@@ -40,17 +38,17 @@ class RegisterActivity : AppCompatActivity() {
                     lastname_et.setError("please enter last name")
                     return@setOnClickListener
                 }
-                TextUtils.isEmpty(email_et.text.toString()) -> {
-                    email_et.setError("please enter user name")
+                TextUtils.isEmpty(login_email_et.text.toString()) -> {
+                    login_email_et.setError("please enter user name")
                     return@setOnClickListener
                 }
-                !Patterns.EMAIL_ADDRESS.matcher(email_et.text.toString()).matches() -> {
-                    email_et.error = "Please enter a valid email id"
-                    email_et.requestFocus()
+                !Patterns.EMAIL_ADDRESS.matcher(login_email_et.text.toString()).matches() -> {
+                    login_email_et.error = "Please enter a valid email id"
+                    login_email_et.requestFocus()
                     return@setOnClickListener
                 }
-                TextUtils.isEmpty(password_et.text.toString()) -> {
-                    password_et.setError("please enter password_et")
+                TextUtils.isEmpty(login_password_et.text.toString()) -> {
+                    login_password_et.setError("please enter password_et")
                     return@setOnClickListener
                 }
                 else -> checkEmailExistsOrNot()
@@ -60,8 +58,8 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun register() {
         firebaseAuth.createUserWithEmailAndPassword(
-            email_et.text.toString(),
-            password_et.text.toString()
+            login_email_et.text.toString(),
+            login_password_et.text.toString()
         )
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -87,7 +85,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun checkEmailExistsOrNot() {
-        firebaseAuth.fetchSignInMethodsForEmail(email_et.getText().toString())
+        firebaseAuth.fetchSignInMethodsForEmail(login_email_et.getText().toString())
             .addOnCompleteListener(
                 OnCompleteListener<SignInMethodQueryResult> { task ->
                     Log.d(TAG, "" + task.result!!.signInMethods!!.size)

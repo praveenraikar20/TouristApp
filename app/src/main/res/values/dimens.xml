@@ -22,8 +22,6 @@
     <dimen name="signin_tv_textsize">20sp</dimen>
     <dimen name="email_et_left_margin">20dp</dimen>
     <dimen name="email_et_top_margin">100dp</dimen>
-    <dimen name="email_et_right_margin">20dp</dimen>
-    <dimen name="password_et_left_margin">20dp</dimen>
     <dimen name="password_et_top_margin">180dp</dimen>
     <dimen name="password_et_right_margin">20dp</dimen>
     <dimen name="forgotpassword_tv_left_margin">100dp</dimen>
