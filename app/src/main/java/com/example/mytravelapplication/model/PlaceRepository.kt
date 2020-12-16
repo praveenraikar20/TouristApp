@@ -14,7 +14,7 @@ private const val TAG = "SearchPlaceRepository"
 class PlaceRepository {
     private val retrofit = RetrofitInitializer.getInstance().create(RetrofitInterface::class.java)
     private val coordinates = MutableLiveData<LatLng>()
-    fun getPlaceCoordinates(placeName: String): LiveData<LatLng> {
+    fun getPlaceCoordinates(placeName: String): MutableLiveData<LatLng>{
         val placeData = retrofit.getPlaceData(placeName)
         placeData.enqueue(object : Callback<SearchPlaceResponseData> {
             override fun onResponse(
