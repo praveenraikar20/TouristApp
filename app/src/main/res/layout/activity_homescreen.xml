@@ -8,11 +8,11 @@
 
 
     <TextView
-        android:id="@+id/firstname"
+        android:id="@+id/first_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:hint="name"
+        android:textSize="@dimen/first_name_tv_textsize"
+        android:hint="@string/first_name_tv_hint"
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,9 +21,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.039"
-        tools:ignore="MissingConstraints" />
+        />
 
-
-
+    <meow.bottomnavigation.MeowBottomNavigation
+        android:id="@+id/bottomnavigation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_navigation_height"
+        app:mbn_backgroundBottomColor="@color/blue"
+        app:mbn_countBackgroundColor="@color/black"
+        app:mbn_countTextColor="@color/purple_500"
+        app:mbn_defaultIconColor="@color/teal_200"
+        app:mbn_rippleColor="@color/teal_700"
+        app:mbn_selectedIconColor="@color/purple_200"
+        app:mbn_shadowColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

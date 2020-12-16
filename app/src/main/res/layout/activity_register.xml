@@ -6,21 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
     <ImageView
-        android:layout_width="410dp"
-        android:layout_height="240dp"
+        android:layout_width="@dimen/imageview_width"
+        android:layout_height="@dimen/imageview_height"
         android:background="@drawable/background2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:alpha="0.6"
         />
     <TextView
         android:id="@+id/travelguide_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tourist Guide"
+        android:text="@string/tourist_guide_tv"
         android:textStyle="bold"
-        android:textColor="#FDFAFA"
-        android:textSize="30sp"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="@dimen/tourist_guide_textsize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
@@ -29,43 +30,43 @@
         app:layout_constraintVertical_bias="0.08" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="340dp"
-        android:layout_height="450dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="@dimen/cardview_width"
+        android:layout_height="@dimen/cardview_height"
+        android:layout_marginTop="@dimen/cardview_top_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/travelguide_tv"
-        app:layout_constraintVertical_bias="0">
+        app:layout_constraintVertical_bias="0.08">
 
         <TextView
-            android:id="@+id/login_tv"
+            android:id="@+id/register_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="REGISTER"
+            android:layout_marginLeft="@dimen/register_tv_margin_left"
+            android:layout_marginTop="@dimen/register_tv_margin_top"
+            android:text="@string/register_text_view"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="@dimen/registertv_textsize"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/signup_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="220dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="20dp"
-            android:text="SIGN UP"
-            android:textSize="20sp" />
+            android:layout_marginLeft="@dimen/signup_tv_left_margin"
+            android:layout_marginTop="@dimen/signup_tv_top_margin"
+            android:layout_marginRight="@dimen/signup_tv_right_margin"
+            android:text="@string/sign_up_tv"
+            android:textSize="@dimen/signup_tv_textsize" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/width"
             android:layout_height="@dimen/height"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/firstname_et_margin_left"
+            android:layout_marginTop="@dimen/first_name_et_margin_top"
+            android:layout_marginRight="@dimen/first_name_et_margin_right"
             app:endIconMode="clear_text">
 
             <EditText
@@ -73,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alpha="0.1"
-                android:hint="Enter first name"
+                android:hint="@string/enter_first_name_hint"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -81,9 +82,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/width"
             android:layout_height="@dimen/height"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/last_name_left_margin"
+            android:layout_marginTop="@dimen/last_name_top_margin"
+            android:layout_marginRight="@dimen/last_name_right_margin"
             app:endIconMode="clear_text">
 
             <EditText
@@ -91,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alpha="0.1"
-                android:hint="Enter last name"
+                android:hint="@string/enter_last_name_hint"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -99,9 +100,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/width"
             android:layout_height="@dimen/height"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="220dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/email_et_margin_left"
+            android:layout_marginTop="@dimen/email_et_margin_top"
+            android:layout_marginRight="@dimen/email_et_right_margin"
             app:endIconMode="clear_text"
             app:startIconDrawable="@drawable/ic_baseline_mail_24">
             <EditText
@@ -109,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alpha="0.1"
-                android:hint="Enter email"
+                android:hint="@string/enter_email_hint"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -117,9 +118,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/width"
             android:layout_height="@dimen/height"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="290dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/password_et_left_margin"
+            android:layout_marginTop="@dimen/password_et_margin_top"
+            android:layout_marginRight="@dimen/password_et_margin_right"
             app:endIconMode="password_toggle"
             app:startIconDrawable="@drawable/ic_baseline_lock_24">
             <EditText
@@ -127,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alpha="0.1"
-                android:hint="Enter password"
+                android:hint="@string/enter_password_hint"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -136,12 +137,12 @@
             android:id="@+id/register_btn"
             android:layout_width="@dimen/width"
             android:layout_height="@dimen/height"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="360dp"
-            android:layout_marginRight="20dp"
-            android:backgroundTint="#2097F6"
-            android:text="REGISTER"
-            android:textColor="#FDFCFC" />
+            android:layout_marginLeft="@dimen/register_btn_margin_left"
+            android:layout_marginTop="@dimen/register_btn_margin_top"
+            android:layout_marginRight="@dimen/register_btn_margin_right"
+            android:backgroundTint="@color/blue"
+            android:text="@string/register_btn"
+            android:textColor="@color/white" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

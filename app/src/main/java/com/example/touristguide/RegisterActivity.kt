@@ -18,97 +18,91 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register.*
 
 private const val TAG = "RegisterActivity"
-class RegisterActivity : AppCompatActivity() {
-    lateinit var auth: FirebaseAuth
-    //real time data base reference
-    var databaseReference : DatabaseReference? = null
-    var database: FirebaseDatabase? = null
-    lateinit var registerButton:Button
-    lateinit var firstName:EditText
-    lateinit var lastName:EditText
-    lateinit var userName:EditText
-    lateinit var password:EditText
 
+class RegisterActivity : AppCompatActivity() {
+    lateinit var firebaseAuth: FirebaseAuth
+    //real time data base reference
+    var databaseReference: DatabaseReference? = null
+    var database: FirebaseDatabase? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        registerButton = findViewById(R.id.register_btn)
-        firstName = findViewById(R.id.firstname_et)
-        lastName = findViewById(R.id.lastname_et)
-        userName = findViewById(R.id.email_et)
-        password = findViewById(R.id.password_et)
-        auth = FirebaseAuth.getInstance()
+        firebaseAuth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
         databaseReference = database?.reference!!.child("HomeScreen")
-        registerButton.setOnClickListener {
-            if (TextUtils.isEmpty(firstName.text.toString())) {
-                firstName.setError("please enter first name")
-                return@setOnClickListener
+        register_btn.setOnClickListener {
+            when {
+                TextUtils.isEmpty(firstname_et.text.toString()) -> {
+                    firstname_et.setError("please enter first name")
+                    return@setOnClickListener
+                }
+                TextUtils.isEmpty(lastname_et.text.toString()) -> {
+                    lastname_et.setError("please enter last name")
+                    return@setOnClickListener
+                }
+                TextUtils.isEmpty(email_et.text.toString()) -> {
+                    email_et.setError("please enter user name")
+                    return@setOnClickListener
+                }
+                !Patterns.EMAIL_ADDRESS.matcher(email_et.text.toString()).matches() -> {
+                    email_et.error = "Please enter a valid email id"
+                    email_et.requestFocus()
+                    return@setOnClickListener
+                }
+                TextUtils.isEmpty(password_et.text.toString()) -> {
+                    password_et.setError("please enter password_et")
+                    return@setOnClickListener
+                }
+                else -> checkEmailExistsOrNot()
             }
-            else if (TextUtils.isEmpty(lastName.text.toString())) {
-                lastName.setError("please enter last name")
-                return@setOnClickListener
-           }
-            else if (TextUtils.isEmpty(userName.text.toString())) {
-                userName.setError("please enter user name")
-                return@setOnClickListener
-            }
-
-           else if (!Patterns.EMAIL_ADDRESS.matcher(email_et.text.toString()).matches()) {
-                email_et.error = "Please enter a valid email id"
-                email_et.requestFocus()
-                return@setOnClickListener
-            }
-            else if (TextUtils.isEmpty(password.text.toString())) {
-                password.setError("please enter password")
-                return@setOnClickListener
-            }
-            checkEmailExistsOrNot()
         }
     }
-    private fun register(){
-        auth.createUserWithEmailAndPassword(userName.text.toString(), password.text.toString())
-                    .addOnCompleteListener {
-                        if(it.isSuccessful){
-                            val currentUser = auth.currentUser
-                            //when registration is successful, saving the first name and last name (in profile)
-                            val currentuserDb = databaseReference?.child(currentUser?.uid!!)
-                           currentuserDb?.child("firstname")?.setValue(firstName.text.toString())
-                            currentuserDb?.child("lastname")?.setValue(lastName.text.toString())
-                            Toast.makeText(
-                                this,
-                                "Registration success.",
-                                Toast.LENGTH_LONG)
-                                .show()
-                            finish()
-                        }
-                        else{
 
-                            Toast.makeText(
-                                this,
-                                "Registration failed, please try again!",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-
-                    }
-        }
-    fun checkEmailExistsOrNot() {
-        auth.fetchSignInMethodsForEmail(email_et.getText().toString()).addOnCompleteListener(
-            OnCompleteListener<SignInMethodQueryResult> { task ->
-                Log.d(TAG, "" + task.result!!.signInMethods!!.size)
-                if (task.result!!.signInMethods!!.size == 0) {
-                    // email not existed
-                    register()
-                } else {
-                    // email existed
+    private fun register() {
+        firebaseAuth.createUserWithEmailAndPassword(
+            email_et.text.toString(),
+            password_et.text.toString()
+        )
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val currentUser = firebaseAuth.currentUser
+                    //when registration is successful, saving the first name and last name (in profile)
+                    val currentuserDb = databaseReference?.child(currentUser?.uid!!)
+                    currentuserDb?.child("firstname_et")?.setValue(firstname_et.text.toString())
+                    currentuserDb?.child("lastname_et")?.setValue(lastname_et.text.toString())
                     Toast.makeText(
                         this,
-                        "Email already exists!",
+                        "Registration success.",
                         Toast.LENGTH_LONG
                     ).show()
-                    startActivity(Intent(this,LoginActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Registration failed, please try again!",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-            }).addOnFailureListener(OnFailureListener { e -> e.printStackTrace() })
+            }
+    }
+
+    fun checkEmailExistsOrNot() {
+        firebaseAuth.fetchSignInMethodsForEmail(email_et.getText().toString())
+            .addOnCompleteListener(
+                OnCompleteListener<SignInMethodQueryResult> { task ->
+                    Log.d(TAG, "" + task.result!!.signInMethods!!.size)
+                    if (task.result!!.signInMethods!!.size == 0) {
+                        // email not existed
+                        register()
+                    } else {
+                        // email existed
+                        Toast.makeText(
+                            this,
+                            "Email already exists!",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        startActivity(Intent(this, LoginActivity::class.java))
+                    }
+                }).addOnFailureListener(OnFailureListener { e -> e.printStackTrace() })
     }
 }
