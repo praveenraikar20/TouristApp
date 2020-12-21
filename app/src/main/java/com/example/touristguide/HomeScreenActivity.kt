@@ -1,38 +1,56 @@
 package com.example.touristguide
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_homescreen.*
-private val TAG = HomeScreenActivity::class.java.simpleName
+private const val ID_HOME = 1
+private const val ID_SEARCH = 2
+private const val USER_INFO = 3
 class HomeScreenActivity : AppCompatActivity() {
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var databaseReference: DatabaseReference
-    private lateinit var database: FirebaseDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homescreen)
-        firebaseAuth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        databaseReference = database.reference.child("HomeScreen")
-        loadProfile()
+        bottomNavigation()
     }
-    private fun loadProfile() {
-        val user = firebaseAuth.currentUser
-        val userreference = databaseReference.child(user?.uid!!)
-        // UserName.text = user?.email
-        userreference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val fstname = snapshot.child("firstname").getValue().toString()
-                val LastName = snapshot.child("lastname").value.toString()
-                first_name_tv.text = "$fstname $LastName"
+    fun bottomNavigation(){
+        bottomnavigation.add(MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_baseline_home_24))
+        bottomnavigation.add(MeowBottomNavigation.Model(ID_SEARCH, R.drawable.ic_baseline_search_24))
+        bottomnavigation.add(MeowBottomNavigation.Model(USER_INFO, R.drawable.ic_baseline_account_circle_24))
+//        bottomnavigation.setOnReselectListener {
+//            val name = when(it.id){
+//                ID_HOME -> "HOME"
+//                ID_SEARCH -> "SEARCH"
+//                ID_MAPS -> "MAPS"
+//                else->""
+//            }
+//            Toast.makeText(
+//                this,
+//                "name is clicked",
+//                Toast.LENGTH_LONG
+//            ).show()
+//        }
+        // bottomnavigation.setCount()
+        bottomnavigation.setOnShowListener {
+            val name = when(it.id){
+                ID_HOME -> "HOME"
+                ID_SEARCH -> "SEARCH"
+                USER_INFO ->  startActivity(Intent(this, UsersInformation::class.java))
+                else->""
             }
+            Toast.makeText(
+                this,
+                "name is clicked",
+                Toast.LENGTH_LONG
+            ).show()
+        }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.d(TAG, "onCancelled: Cancelled")
-            }
-        })
+
     }
+
 }

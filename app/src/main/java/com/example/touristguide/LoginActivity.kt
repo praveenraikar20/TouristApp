@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
             })
             builder.setNegativeButton("Close", DialogInterface.OnClickListener { _, _ ->
             })
-            val alertDialog = builder.create()
+           val alertDialog = builder.create()
             alertDialog.show()
         }
     }
