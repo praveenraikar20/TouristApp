@@ -15,11 +15,28 @@
     <string name="not_a_member_register_now_tv">Not a member? Register Now..</string>
     <string name="first_name_tv_hint">name</string>
     <string name="register_text_view">REGISTER</string>
-    <string name="sign_up_tv">SIGN UP</string>
     <string name="enter_first_name_hint">Enter first name</string>
     <string name="enter_last_name_hint">Enter last name</string>
     <string name="enter_email_hint">Enter email</string>
     <string name="enter_password_hint">Enter password</string>
     <string name="register_btn">REGISTER</string>
     <string name="login_btn">LOGIN</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in_text">SIGN IN</string>
+    <string name="email_et_helper_text">Enter your email id</string>
+    <string name="email_hint_text">Email</string>
+    <string name="password_helper_text">Enter your password</string>
+    <string name="login_text">LOGIN</string>
+    <string name="register_text">Not a member yet ? Register Here</string>
+    <string name="forgot_password_text">Forgot password ?</string>
+    <string name="sign_up_tv">SIGN UP</string>
+    <string name="user_name_placeholder_text">Enter your Username</string>
+    <string name="username_hint">Username</string>
+    <string name="email_place_holder">Enter your email id</string>
+    <string name="email_hint">Email</string>
+    <string name="password_place_holder">Enter your password</string>
+    <string name="password_hint">Password</string>
+    <string name="password_place_holder_text">Enter your password</string>
+    <string name="already_a_member_login_here">Already a member? Login Here</string>
 </resources>

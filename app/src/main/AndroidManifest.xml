@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TouristGuide">
-        <activity android:name=".UsersInformation"></activity>
-        <activity android:name=".HomeScreenActivity" />
+        <activity android:name=".HomeScreenActivity"></activity>
+        <activity android:name=".UsersInformation" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

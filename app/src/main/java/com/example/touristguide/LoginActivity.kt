@@ -11,14 +11,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_signin.*
 import kotlinx.android.synthetic.main.dialog_forgot_password.*
 
 class LoginActivity : AppCompatActivity() {
     lateinit var firebaseAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_signin)
         firebaseAuth = FirebaseAuth.getInstance()
         val currentuser = firebaseAuth.currentUser
         if (currentuser != null) {

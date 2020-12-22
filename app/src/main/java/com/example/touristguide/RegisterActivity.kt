@@ -13,7 +13,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.SignInMethodQueryResult
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_signin.*
+import kotlinx.android.synthetic.main.activity_signup.*
 
 private const val TAG = "RegisterActivity"
 
@@ -24,35 +25,40 @@ class RegisterActivity : AppCompatActivity() {
     var database: FirebaseDatabase? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_signup)
         firebaseAuth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
         databaseReference = database?.reference!!.child("HomeScreen")
-        register_btn.setOnClickListener {
+        btn_register.setOnClickListener {
             when {
-                TextUtils.isEmpty(firstname_et.text.toString()) -> {
-                    firstname_et.setError("please enter first name")
+                TextUtils.isEmpty(et_username.text.toString()) -> {
+                    et_username.setError("please enter user-name")
                     return@setOnClickListener
                 }
-                TextUtils.isEmpty(lastname_et.text.toString()) -> {
-                    lastname_et.setError("please enter last name")
+                TextUtils.isEmpty(register_email_et.text.toString()) -> {
+                    login_email_et.setError("please enter email")
                     return@setOnClickListener
                 }
-                TextUtils.isEmpty(login_email_et.text.toString()) -> {
-                    login_email_et.setError("please enter user name")
-                    return@setOnClickListener
-                }
-                !Patterns.EMAIL_ADDRESS.matcher(login_email_et.text.toString()).matches() -> {
+                !Patterns.EMAIL_ADDRESS.matcher(register_email_et.text.toString()).matches() -> {
                     login_email_et.error = "Please enter a valid email id"
                     login_email_et.requestFocus()
                     return@setOnClickListener
                 }
-                TextUtils.isEmpty(login_password_et.text.toString()) -> {
-                    login_password_et.setError("please enter password_et")
+                TextUtils.isEmpty(register_password_et.text.toString()) -> {
+                    login_password_et.setError("please enter password")
                     return@setOnClickListener
                 }
+               !register_password_et.text.equals(et_reenter_password.text) -> {
+                   login_password_et.setError("passwords are not equal")
+                   return@setOnClickListener
+               }
+
                 else -> checkEmailExistsOrNot()
             }
+        }
+        tv_register.setOnClickListener(){
+            startActivity(Intent(this, HomeScreenActivity::class.java))
+
         }
     }
 
@@ -66,8 +72,7 @@ class RegisterActivity : AppCompatActivity() {
                     val currentUser = firebaseAuth.currentUser
                     //when registration is successful, saving the first name and last name (in profile)
                     val currentuserDb = databaseReference?.child(currentUser?.uid!!)
-                    currentuserDb?.child("firstname_et")?.setValue(firstname_et.text.toString())
-                    currentuserDb?.child("lastname_et")?.setValue(lastname_et.text.toString())
+                    currentuserDb?.child("firstname_et")?.setValue(et_username.text.toString())
                     Toast.makeText(
                         this,
                         "Registration success.",
